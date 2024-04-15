@@ -5,7 +5,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  run:
+  github-actions-checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: hello-world
+
+  alternate-actions-checkout:
     runs-on: ubuntu-latest
     steps:
       - uses: jsoref/checkout@logging-for-fetch-fail
