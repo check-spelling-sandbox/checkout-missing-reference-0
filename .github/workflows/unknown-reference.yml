@@ -4,17 +4,25 @@ on:
   pull_request:
   workflow_dispatch:
 
+env:
+  target: hello-world
+
 jobs:
   github-actions-checkout:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: hello-world
+          ref: ${{ env.target }}
 
   alternate-actions-checkout:
     runs-on: ubuntu-latest
     steps:
       - uses: jsoref/checkout@logging-for-fetch-fail
         with:
-          ref: hello-world
+          ref: ${{ env.target }}
+
+  git-direct:
+    runs-on: ubuntu-latest
+    steps:
+      - run: git clone $GITHUB_SERVER_URL/$GITHUB_REPOSITORY --no-tags --single-branch --branch ${{ env.target }}
