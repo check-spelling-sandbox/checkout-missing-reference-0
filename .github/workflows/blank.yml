@@ -1,0 +1,14 @@
+name: CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: jsoref/checkout@logging-for-fetch-fail
+        with:
+          ref: hello-world
